@@ -3,7 +3,7 @@
 #' @param criteria A regex expression to definite the allowable characters
 #'
 #' @export
-checkFileNamingConventions <- function(criteria = "[^a-z_\\.\\/]") {
+checkFileNamingConventions <- function(criteria = "[^a-z0-9_\\.\\/]") {
 
   # check the files for invalid names
   r_files <- list.files(recursive = TRUE, pattern = "\\.R$") %>%

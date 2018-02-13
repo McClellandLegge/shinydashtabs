@@ -4,7 +4,7 @@
 \alias{checkFileNamingConventions}
 \title{Check the naming conventions of the app files}
 \usage{
-checkFileNamingConventions(criteria = "[^a-z_\\\\.\\\\/]")
+checkFileNamingConventions(criteria = "[^a-z0-9_\\\\.\\\\/]")
 }
 \arguments{
 \item{criteria}{A regex expression to definite the allowable characters}

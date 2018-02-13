@@ -18,6 +18,5 @@ extractTabName <- function(path) {
 
   # the convention is that the last [a-z_]+ string in the dot delimited name
   # is the tab name
-  basename(path) %>%
-    gsub(".*\\.([a-z_]+)(\\.R|\\.yaml)$", "\\1", .)
+  gsub(".*\\.([a-z0-9_]+)(\\.R|\\.yaml)$", "\\1", basename(path))
 }
