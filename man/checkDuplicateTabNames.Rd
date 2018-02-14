@@ -4,10 +4,12 @@
 \alias{checkDuplicateTabNames}
 \title{Check the files against naming conventions}
 \usage{
-checkDuplicateTabNames(path = "ui/body/tabs/")
+checkDuplicateTabNames(path = "ui/body/tabs/", tocheck = NULL)
 }
 \arguments{
-\item{path}{Root path}
+\item{path}{Root path of the UI}
+
+\item{tocheck}{An optional character vector of names to check against the existing ones}
 }
 \description{
 Check the files against naming conventions

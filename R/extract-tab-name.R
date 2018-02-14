@@ -16,7 +16,9 @@ extractTabName <- function(path) {
     stop(msg)
   }
 
+  # strip out all the parent directories and the extension
+  path_ <- tools::file_path_sans_ext(basename(path))
   # the convention is that the last [a-z_]+ string in the dot delimited name
   # is the tab name
-  gsub(".*\\.([a-z0-9_]+)(\\.R|\\.yaml)$", "\\1", basename(path))
+  gsub(".*\\.([a-z0-9_]+)$", "\\1", path_)
 }
