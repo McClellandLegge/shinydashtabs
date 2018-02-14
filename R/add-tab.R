@@ -20,7 +20,7 @@ addTab <- function(name, parent = 'ui', tabs = "ui/body/tabs", active = TRUE, op
   if (parent == 'ui') {
     parent_dir <- tabs
   } else {
-    parent_dir <- dirname(shinytabconstructor::findATab(parent, tabs))
+    parent_dir <- dirname(shinytabconstructor::findTab(parent, tabs))
     if (is.na(parent_dir)) {
       stop(paste("Tab", parent, "not found!"))
     }
