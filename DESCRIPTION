@@ -13,5 +13,6 @@ Suggests: testthat
 Imports: tools,
     shiny,
     shinydashboard,
-    purrr
+    purrr,
+    utils
 RoxygenNote: 6.0.1
