@@ -14,5 +14,6 @@ Imports: tools,
     shiny,
     shinydashboard,
     purrr,
-    utils
+    utils,
+    brew
 RoxygenNote: 6.0.1

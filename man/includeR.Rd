@@ -4,12 +4,15 @@
 \alias{includeR}
 \title{Recursively source R scripts and return the values}
 \usage{
-includeR(path, ...)
+includeR(path, single_as_list = FALSE, ...)
 }
 \arguments{
 \item{path}{A path to an R script}
 
 \item{...}{Additional argument to \code{list.files}}
+
+\item{singe_as_list}{A Boolean. Should a single sourced value be returned
+as list? Useful for server functions}
 }
 \value{
 A list if more than one file sourced, otherwise the value itself
