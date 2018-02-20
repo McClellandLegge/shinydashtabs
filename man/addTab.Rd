@@ -4,8 +4,7 @@
 \alias{addTab}
 \title{Create a new tab}
 \usage{
-addTab(name, parent = "ui", active = TRUE, open = TRUE,
-  tabs = file.path("ui", "body", "tabs"), server = file.path("server"))
+addTab(name, parent = "ui", active = TRUE, open = TRUE)
 }
 \arguments{
 \item{name}{A character string. What to call the tab? Cannot start with a number.}
@@ -16,10 +15,6 @@ which indicates the tab should be accessible on the top level of the main menu}
 \item{active}{A Boolean. Should the .yaml be initialized to immediately include the tab in the app?}
 
 \item{open}{A Boolean. Should RStudio attempt to open the tab you just created?}
-
-\item{tabs}{A file path. The location of the top of the tabs in an app's ui directory}
-
-\item{server}{A file path. The location of the top level of the server directory}
 }
 \description{
 Create a new tab

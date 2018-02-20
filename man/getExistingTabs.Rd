@@ -4,18 +4,11 @@
 \alias{getExistingTabs}
 \title{Find the existing tab names}
 \usage{
-getExistingTabs(path = "ui/body/tabs")
-}
-\arguments{
-\item{path}{Where to start the search}
+getExistingTabs()
 }
 \value{
 A character vector
 }
 \description{
 Find the existing tab names
-}
-\examples{
-demo_app_ui <- system.file("extdata", "demo-app", "ui", package = "shinytabconstructor", mustWork = TRUE)
-getExistingTabs(demo_app_ui)
 }

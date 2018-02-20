@@ -5,27 +5,27 @@
 #'     which indicates the tab should be accessible on the top level of the main menu
 #' @param active A Boolean. Should the .yaml be initialized to immediately include the tab in the app?
 #' @param open A Boolean. Should RStudio attempt to open the tab you just created?
-#' @param tabs A file path. The location of the top of the tabs in an app's ui directory
-#' @param server A file path. The location of the top level of the server directory
 #'
 #' @export
-addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE,
-                   tabs = file.path("ui", "body", "tabs"), server = file.path("server")) {
+addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
 
   # check the naming conventions against the default
   stopifnot(shinytabconstructor::checkNamingConventions(name))
 
   # check that there is no duplication of names
-  stopifnot(shinytabconstructor::checkDuplicateTabNames(path = tabs, name))
+  stopifnot(shinytabconstructor::checkDuplicateTabNames(name))
 
   # just because its used so much
   pkg <- "shinytabconstructor"
+
+  # find the file path of the location of the tabs
+  tabs <- shinytabconstructor::getTabLocation()
 
   # find the parent directory
   if (parent == 'ui') {
     parent_dir <- tabs
   } else {
-    parent_dir <- dirname(shinytabconstructor::findTab(parent, tabs))
+    parent_dir <- dirname(shinytabconstructor::findTab(parent))
     if (is.na(parent_dir)) {
       stop(paste("Tab", parent, "not found!"))
     }
@@ -53,7 +53,7 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE,
   }
 
   # create the server side folder
-  server_dir <- file.path(server, name)
+  server_dir <- file.path(shinytabconstructor::getServerLocation(), name)
   if (file.exists(server_dir)) {
     msg <- paste(server_dir, "already exists! Please remove it before continuing")
     stop(msg)

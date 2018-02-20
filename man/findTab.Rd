@@ -4,12 +4,10 @@
 \alias{findTab}
 \title{Find an existing tab}
 \usage{
-findTab(name, tabs = "ui/body/tabs")
+findTab(name)
 }
 \arguments{
 \item{name}{The name of the tab to find the location for}
-
-\item{tabs}{Where to start looking}
 }
 \value{
 A filepath of the location of that tab

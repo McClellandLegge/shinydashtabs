@@ -12,7 +12,7 @@ initTabConstructor <- function() {
     stop("`utils` needed for this function to work. Please install it.", call. = FALSE)
   }
 
-  app_dir <- getwd()
+  app_dir <- rprojroot::find_rstudio_root_file()
   title   <- sprintf("Using:\n\n%s\n\nas the app's root directory, continue?", app_dir)
   resp1   <- utils::menu(c("Yes", "No"), title = title)
 

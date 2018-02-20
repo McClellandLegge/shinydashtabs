@@ -1,18 +1,17 @@
 #' Check the files against naming conventions
 #'
-#' @param path Root path of the UI
 #' @param tocheck An optional character vector of names to check against the existing ones
 #'
 #' @export
 #' @import purrr
-checkDuplicateTabNames <- function(path = "ui/body/tabs/", tocheck = NULL) {
+checkDuplicateTabNames <- function(tocheck = NULL) {
 
   if (!requireNamespace("purrr", quietly = TRUE)) {
     stop("`purrr` needed for this function to work. Please install it.", call. = FALSE)
   }
 
   # find the file paths of any R files under the tabs directory
-  paths     <- shinytabconstructor::getExistingTabs(path)
+  paths     <- shinytabconstructor::getExistingTabs()
   tab_names <- names(paths)
 
   # determine if any are duplicated by seeing which indices match each entry
