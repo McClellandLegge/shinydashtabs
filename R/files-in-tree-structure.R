@@ -16,7 +16,7 @@ filesInTreeStructure <- function(file, pattern = NULL) {
     }
   } else {
     files      <- list.files(file, full.names = TRUE, include.dirs = TRUE)
-    out        <- lapply(files, filesInTreeStructure, pattern = pattern)
+    out        <- lapply(files, shinytabconstructor::filesInTreeStructure, pattern = pattern)
     names(out) <- basename(files)
   }
 
