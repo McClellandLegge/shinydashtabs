@@ -5,7 +5,6 @@
 #' @return A list of html menu objects
 #' @export
 #' @import purrr
-#' @examples
 makeMenu <- function(.list) {
 
   if (!requireNamespace("purrr", quietly = TRUE)) {

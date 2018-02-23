@@ -2,8 +2,8 @@
 #'
 #' @return A character vector
 #' @export
-#'
 #' @examples
+#' getExistingTabs()
 getExistingTabs <- function() {
 
   # find the tab location

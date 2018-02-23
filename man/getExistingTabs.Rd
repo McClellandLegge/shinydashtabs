@@ -12,3 +12,6 @@ A character vector
 \description{
 Find the existing tab names
 }
+\examples{
+getExistingTabs()
+}
