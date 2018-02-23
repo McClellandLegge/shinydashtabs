@@ -5,7 +5,7 @@
 #' @param cascade A boolean, should it delete all tabs below it?
 #'
 #' @export
-removeTab <- function(name, cascade = FALSE) {
+deleteTab <- function(name, cascade = FALSE) {
 
   # find the file path of the location of the tabs
   tab_dir <- dirname(shinytabconstructor::findTab(name))
