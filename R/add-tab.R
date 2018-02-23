@@ -39,6 +39,14 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
     stopifnot(dir.create(new_tab_dir))
   }
 
+  # create the server side folder
+  server_dir <- file.path(shinytabconstructor::getServerLocation(), name)
+  if (file.exists(server_dir)) {
+    msg <- paste(server_dir, "already exists! Please remove it before continuing")
+    stop(msg)
+  }
+  stopifnot(dir.create(server_dir))
+
   # create the R and yaml files
   new_tab_fl <- file.path(new_tab_dir, name)
   ui_copy_res <- file.copy(
@@ -51,14 +59,6 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
     unlink(new_tab_dir, recursive = TRUE, force = TRUE)
     stop("Copy not successful -- Failed!")
   }
-
-  # create the server side folder
-  server_dir <- file.path(shinytabconstructor::getServerLocation(), name)
-  if (file.exists(server_dir)) {
-    msg <- paste(server_dir, "already exists! Please remove it before continuing")
-    stop(msg)
-  }
-  stopifnot(dir.create(server_dir))
 
   tryCatch({
 
