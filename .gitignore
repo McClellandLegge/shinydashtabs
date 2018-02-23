@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# ignore the test app
+app.R
+ui/
+server/
