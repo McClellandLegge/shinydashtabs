@@ -28,9 +28,11 @@ runApp()                        # run the empty app
 Then,
 
 ```r
-addTab('help', open = TRUE)     # create a tab and open all associated files
-addTab('contact', open = FALSE) # create a 'child' of the 'help' tab
-runApp()                        # see your creation!
+addTab('help', open = TRUE)             # create a tab and open all associated files
+addTab('contact', 'help', open = FALSE) # create a 'child' of the 'help' tab
+runApp()                                # see your creation!
+
+deleteTab('help')                       # delete the tab & files
 ```
 
 ## Installation
@@ -179,3 +181,10 @@ potentially massive apps easy but if you do want more information you
 do have access to the utility functions in the app.
 
 **Put code that needs to be run only once or needs to be accessed by both the server and ui in the `app.R`**
+
+#### 9. Enhancements
+
+Right now you don't have a lot of options for customizing the menu in
+the sidebar because its automatically created. The .yaml files on the
+ui side will be enabled with the functionality to specify everything
+you normally would -- I just need to build it out, bear with me.
