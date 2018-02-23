@@ -9,6 +9,7 @@ thisTabName <- function() {
     # extract the tab name from the established conventions
     return(shinytabconstructor::extractTabName(path))
   } else {
+    warning("This function should only be run by 'shiny', it will return 'NULL' any other time")
     return(NULL)
   }
 }
