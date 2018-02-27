@@ -14,50 +14,56 @@ initTabConstructor <- function() {
 
   app_dir <- rprojroot::find_rstudio_root_file()
   title   <- sprintf("Using:\n\n%s\n\nas the app's root directory, continue?", app_dir)
-  resp1   <- utils::menu(c("Yes", "No"), title = title)
+  resp    <- utils::menu(c("Yes", "No"), title = title)
 
-  if (resp1 == 1L) {
-    # we use a while block so that we can `break` and return to the top level
-    # anywhere without having to call a `stop`
-    while (TRUE) {
-      check_names <- c("ui", "server", "app")
+  if (resp != 1L) {
+    return(invisible(FALSE))
+  }
 
-      # check all capitalizations
-      existing_files <- list.files(
-        pattern      = paste0(check_names, collapse = "|") # make "OR" condition
-        , ignore.case  = TRUE
-        , full.names   = TRUE
-        , recursive    = FALSE
-        , include.dirs = TRUE
-      )
+  # check to make sure these files/directories don't exist
+  check_files <- c("ui", "server", "ui.R", "server.R", "app.R") %>% toupper()
+  exist_files <- list.files(
+      include.dirs = TRUE
+    , no..         = TRUE
+    , recursive    = FALSE
+  )
 
-      # compose the message for the user
-      overwrite_msg <- paste0(existing_files, collapse = "\n") %>%
-        sprintf("Files/directories to be overwritten:\n\n%s\n\nContinue?", .)
+  # identify the files that conflict
+  conflict_files <- exist_files %>%
+    toupper() %>%
+    map_lgl(~. %in% check_files) %>%
+    exist_files[.]
 
-      # check that the user is ok with overwriting the files
-      if (length(existing_files) > 0L) {
-        resp2  <- utils::menu(c("Yes", "No"), title = overwrite_msg)
-        if (resp2 == 1L) {
-          resp3  <- utils::menu(c("Yes", "No"), title = "Are you SURE?")
-          if (resp3 != 1L) {
-            break()
-          } #/ resp3 if-block
-          # delete the existing files
-          unlink(existing_files, recursive = TRUE, force = TRUE)
-        } else {
-          break()
-        } #/ resp2 if-block
-      } #/ length existing files if-block
+  # check that the user is ok with overwriting the files
+  if (length(conflict_files) > 0L) {
 
-      # execute the copy
-      copy_res <- system.file("demo_app", package = "shinytabconstructor") %>%
-        list.files(full.names = TRUE) %>%
-        file.copy(., app_dir, recursive = TRUE)
+    # compose the message for the user
+    overwrite_msg <- paste0(conflict_files, collapse = "\n") %>%
+      sprintf("Files/directories to be overwritten:\n\n%s\n\nContinue?", .)
 
-      writeLines("Done! Add tabs with the 'addTab' function.")
-      break()
+    resp2  <- utils::menu(c("Yes", "No"), title = overwrite_msg)
+    if (resp2 == 1L) {
+      resp3  <- utils::menu(c("Yes", "No"), title = "Are you SURE?")
+      if (resp3 != 1L) {
+        return(invisible(FALSE))
+      } #/ resp3 if-block
+      # delete the existing files
+      unlink(conflict_files, recursive = TRUE, force = TRUE)
+    } else {
+      return(invisible(FALSE))
+    } #/ resp2 if-block
+  } #/ length existing files if-block
 
-    } #/ dummy while block
-  } #/ resp1 if-block
+  # execute the copy
+  copy_res <- system.file("demo_app", package = "shinytabconstructor") %>%
+    list.files(full.names = TRUE) %>%
+    file.copy(., app_dir, recursive = TRUE)
+
+  # initialize server dir if not already
+  if (!dir.exists("server")) {
+    dir.create("server")
+  }
+
+  writeLines("Done! Add tabs with the 'addTab' function.")
+  return(invisible(TRUE))
 }
