@@ -35,34 +35,39 @@ makeMenu <- function(.list) {
   l                <- list()
   for (k in seq_along(clist)) {
 
+    # read in the options, discard any null values
+    yaml_opts <- yaml::read_yaml(clist[[k]][[1]]) %>%
+      discard(is.null)
+
+    # we ignore a tabName if specified as this is automatically handled by
+    # the package framework
+    yaml_opts[['tabName']] <- menu_names[k]
+
+    # coalesce with the defaults
+    yaml_opts[['text']] <- coalesce(yaml_opts[['text']], menu_labels[k])
+
+    # look at the position in the hierarchy
     has_only_yaml_children <- grepl("\\.yaml$", menu_child_names[[k]])
     is_top_level           <- attr(clist[[k]], "top-level")
+
     if (is.null(is_top_level) || !is.logical(is_top_level)) {
       is_top_level <- FALSE
     }
+
     if (all(has_only_yaml_children)) {
       if (is_top_level == TRUE) {
-        l[[k]] <- shinydashboard::menuItem(
-            text    = menu_labels[k]
-          , tabName = menu_names[k]
-        )
+        l[[k]] <- do.call(shinydashboard::menuItem, args = yaml_opts)
       } else {
         # if the list item only has yamls below it we know that we can supply
         # a menu list sub item
-        l[[k]] <- shinydashboard::menuSubItem(
-            text    = menu_labels[k]
-          , tabName = menu_names[k]
-        )
+        l[[k]] <- do.call(shinydashboard::menuSubItem, args = yaml_opts)
       } #/ is top level if-block
     } else {
       # if we see non-yaml names below (i.e. what we assume to be more directories)
       # we want to initialize a menu item and create either more menu items or
       # sub menu items recursively.
-      l[[k]] <- shinytabconstructor::menuItemList(
-          text    = menu_labels[k]
-        , tabName = menu_names[k]
-        , .list   = shinytabconstructor::makeMenu(clist[[k]])
-      )
+      yaml_opts[[".list"]] <- shinytabconstructor::makeMenu(clist[[k]])
+      l[[k]] <- do.call(shinytabconstructor::menuItemList, args = yaml_opts)
     } #/ if-else block
   } #/ seqlong clist block
 

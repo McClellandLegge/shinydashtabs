@@ -1,0 +1,11 @@
+# NOTE: initalized using only the shinydashboard::menuSubItem arguments,
+#   a subset of the ones available for shinydashboard::menuItem. If this is
+#   a shinydashboard::menuItem then you can add those arguments (not shown below)
+text:
+href:
+newtab:
+icon:
+selected:
+
+# NOTE: 'tabName' is ignored as changing it deviates from the framework conventions.
+#   If you must change it then using the package isn't your best option

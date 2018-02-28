@@ -47,7 +47,7 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
   }
   stopifnot(dir.create(server_dir))
 
-  # create the R and yaml files
+  # create the R file
   new_tab_fl <- file.path(new_tab_dir, name)
   ui_copy_res <- file.copy(
     system.file("templates", "new_tab.R", package = pkg),
@@ -82,7 +82,9 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
 
   # initialize the yaml if the user wants it to appear right away
   if (active == TRUE) {
-    stopifnot(file.create(paste0(new_tab_fl, ".yaml")))
+    yaml_template <- system.file("templates", "menu_subitem.yaml", package = pkg)
+    new_yaml      <- paste0(new_tab_fl, ".yaml")
+    stopifnot(file.copy(yaml_template, new_yaml))
   }
 
   # open the files in RStudio
