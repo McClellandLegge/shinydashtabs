@@ -8,9 +8,10 @@
 deleteTab <- function(name, cascade = FALSE) {
 
   # find the file path of the location of the tabs
+  ser_loc <- shinytabconstructor::getServerLocation()
   tab_dir <- dirname(shinytabconstructor::findTab(name))
   tab_fls <- paste0(name, ".", c("R", "yaml"))
-  ser_dir <- file.path(shinytabconstructor::getServerLocation(), name)
+  ser_dir <- file.path(ser_loc, name)
   ser_fls <- paste(name, c("renders.R", "reactives.R", "observers.R"), sep = "_")
 
   # check the existance of the tab dirs
@@ -53,7 +54,8 @@ deleteTab <- function(name, cascade = FALSE) {
 
   # find any files that aren't standard
   if (has_children == TRUE) {
-    ignore <- c(tab_fls, child_tab_names)
+    ignore         <- c(tab_fls, child_tab_names)
+    child_ser_dirs <- file.path(ser_loc, child_tab_names)
   } else {
     ignore <- tab_fls
   }
@@ -65,7 +67,7 @@ deleteTab <- function(name, cascade = FALSE) {
 
   # find the server directory
   ser_dir_fls <- list.files(
-    path         = ser_dir
+      path         = ser_dir
     , all.files    = TRUE
     , include.dirs = TRUE
     , full.names   = TRUE
@@ -74,7 +76,7 @@ deleteTab <- function(name, cascade = FALSE) {
 
   # find any files that aren't standard
   non_ser_fls <- grep(
-    pattern  = paste0(ser_fls, collapse = "|")
+      pattern  = paste0(ser_fls, collapse = "|")
     , x        = basename(ser_dir_fls)
     , invert   = TRUE
   )
@@ -93,8 +95,14 @@ deleteTab <- function(name, cascade = FALSE) {
       msgs[['server']] <- sprintf("Found non-standard files in server folder:\n\n%s\n\n", fl_msg)
     } #/ non-ser files if block
 
+    if (length(child_tab_names) > 0L) {
+      fl_msg  <- paste0(child_tab_names, collapse = "\n")
+      msgs[['server']] <- sprintf("Child tab(s) found:\n\n%s\n\n", fl_msg)
+    }
+
     if (length(msgs) > 0L) {
-      stop(do.call(paste0, msgs))
+      msg <- paste0("'cascade' set to FALSE but:\n\n", do.call(paste0, msgs))
+      stop(msg)
     } #/ msg length if-block
 
   } #/ cascade if-block
@@ -102,6 +110,13 @@ deleteTab <- function(name, cascade = FALSE) {
   # delete folders
   .unlink(tab_dir, TRUE, TRUE)
   .unlink(ser_dir, TRUE, TRUE)
+
+  # delete sever side code for children
+  if (length(child_ser_dirs) > 0L) {
+    for (child_dir in child_ser_dirs) {
+      .unlink(child_dir, TRUE, TRUE)
+    }
+  }
 
   return(invisible(TRUE))
 }
