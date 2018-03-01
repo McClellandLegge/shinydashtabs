@@ -57,7 +57,8 @@ deleteTab <- function(name, cascade = FALSE) {
     ignore         <- c(tab_fls, child_tab_names)
     child_ser_dirs <- file.path(ser_loc, child_tab_names)
   } else {
-    ignore <- tab_fls
+    ignore         <- tab_fls
+    child_ser_dirs <- character(0)
   }
   non_tab_fls <- grep(
       pattern  = paste0(ignore, collapse = "|")
