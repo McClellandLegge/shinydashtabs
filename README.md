@@ -174,6 +174,14 @@ The function is smart and will both ask you to confirm deletion and detect if th
 
 Notice the function notified that there were child tabs.
 
+#### 8. Static Variables, Functions & Data
+
+To keep things organized we put one time library loads, variable definitions, function definitions and data loads in a separate place. The initialization will create the `init/` directory with the following files:
+
+![init files](www/app/06-init-dir.PNG)
+
+Anything that needs to be run only once or needs to be available in both the ui and server side code should be put in the appropriate files.
+
 #### 8. Tips
 
 Using RStudio's "Go to file/function" abilities makes moving around

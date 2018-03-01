@@ -1,1 +1,1 @@
-dashboardHeader(title = "Tab Demo")
+dashboardHeader(title = app_title)

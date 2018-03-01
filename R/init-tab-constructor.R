@@ -21,7 +21,7 @@ initTabConstructor <- function() {
   }
 
   # check to make sure these files/directories don't exist
-  check_files <- c("ui", "server", "ui.R", "server.R", "app.R") %>% toupper()
+  check_files <- c("ui", "server", "init", "ui.R", "server.R", "app.R") %>% toupper()
   exist_files <- list.files(
       include.dirs = TRUE
     , no..         = TRUE
