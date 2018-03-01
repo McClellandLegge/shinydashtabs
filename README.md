@@ -182,17 +182,16 @@ To keep things organized we put one time library loads, variable definitions, fu
 
 Anything that needs to be run only once or needs to be available in both the ui and server side code should be put in the appropriate files.
 
-#### 8. Tips
+#### 9. Including Images, Custom CSS and Javascript
+
+The initialization process will also copy the `www/` directory and populate some demo scripts to include and how to include them in the `ui/body/ui.body.R` script.
+
+![images, css and javascript](www/app/07-www-dir.PNG)
+
+#### 10. Tips
 
 Using RStudio's "Go to file/function" abilities makes moving around
 potentially massive apps easy but if you do want more information you
 do have access to the utility functions in the app.
 
 **Put code that needs to be run only once or needs to be accessed by both the server and ui in the `app.R`**
-
-#### 9. Enhancements
-
-Right now you don't have a lot of options for customizing the menu in
-the sidebar because its automatically created. The .yaml files on the
-ui side will be enabled with the functionality to specify everything
-you normally would -- I just need to build it out, bear with me.
