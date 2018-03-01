@@ -7,6 +7,10 @@
 #' @import purrr
 makeMenu <- function(.list) {
 
+  if (!requireNamespace("yaml", quietly = TRUE)) {
+    stop("`yaml` needed for this function to work. Please install it.", call. = FALSE)
+  }
+
   if (!requireNamespace("purrr", quietly = TRUE)) {
     stop("`purrr` needed for this function to work. Please install it.", call. = FALSE)
   }
