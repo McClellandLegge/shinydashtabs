@@ -158,11 +158,37 @@ at the same time.
 
 Here's what the app looks like now:
 
-![nested tabs in menu](www/app/04-nested-app.PNG)
+![nested tabs in menu](www/app/04-nested-app-no-sel.PNG)
 
 But wait, what happened to our `methodology` tab content? Don't worry,
 the source code is still there but because of the way the menu is
 set up only the leaf levels have content pages.
+
+And wait, since the `research` tab is showing why isn't the sidebar menu opened with the `research` tab selected? The reason is this is the default action, but it is something we can configure. We'll learn how in the next section.
+
+#### 7. Configuring the Sidebar Menu
+
+Since the sidebar menu is created programmatically using the hierarchical structure of the `ui/body/tabs` directory we can't pass it parameters directly in a function call.
+
+Instead, the constructor allows you to configure these things in [YAML](http://yaml.org/) (YAML Ain't Markup Language) with simple syntax.
+
+Let's configure the `white_paper` tab, first open its YAML file, the easiest way is using the "Go to file/function" search:
+
+![using go to file](www/app/04a-goto-script.png)
+
+We'll add some options (demonstrating with the `ifelse` that you can run R code there if needed):
+
+![configure white paper tab yaml](www/app/04b-whitepaper-yaml.PNG)
+
+And to the parent's YAML (`methodology.yaml`) too:
+
+![configure methodology tab yaml](www/app/04c-methodology-yaml.PNG)
+
+Save and run the app:
+
+![configured app](www/app/04d-configured-app.PNG)
+
+Great! You can customize in any way you normally would.
 
 #### 7. Removing Tabs
 
@@ -170,9 +196,11 @@ Right, so there are a lot of files associated with each tab, part of the price o
 
 The function is smart and will both ask you to confirm deletion and detect if there are any files (tabs or otherwise) below them.
 
-![deleting a tab recursively](www/app/05-delete-tab.PNG)
+![deleting a tab](www/app/05-delete-tab.PNG)
 
-Notice the function notified that there were child tabs.
+Notice the function notified that there were child tabs, if you want to delete those too, then specify `cascade = TRUE` in the function call:
+
+![deleting a tab recursively](www/app/05a-delete-tab-recur.PNG)
 
 #### 8. Static Variables, Functions & Data
 
@@ -188,10 +216,7 @@ The initialization process will also copy the `www/` directory and populate some
 
 ![images, css and javascript](www/app/07-www-dir.PNG)
 
-#### 10. Tips
 
-Using RStudio's "Go to file/function" abilities makes moving around
-potentially massive apps easy but if you do want more information you
-do have access to the utility functions in the app.
+#### 10. Get Building!
 
-**Put code that needs to be run only once or needs to be accessed by both the server and ui in the `app.R`**
+Check out the rest of the capabilities of [Shinydashboard](https://rstudio.github.io/shinydashboard/).
