@@ -1,7 +1,7 @@
 Package: shinytabconstructor
 Type: Package
 Title: Opinionated Shiny Structure
-Version: 0.7.4
+Version: 0.8.0
 Author: McClelland Legge <McClelland.Legge@gmail.com> [aut, cre]
 Maintainer: <McClelland.Legge@gmail.com>
 Description: A package to structure and run shiny code in a way that makes it 

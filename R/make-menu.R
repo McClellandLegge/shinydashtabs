@@ -41,7 +41,8 @@ makeMenu <- function(.list) {
 
     # read in the options, discard any null values
     yaml_opts <- yaml::read_yaml(clist[[k]][[1]]) %>%
-      discard(is.null)
+      discard(is.null) %>%
+      evaluateYAML()
 
     # we ignore a tabName if specified as this is automatically handled by
     # the package framework
