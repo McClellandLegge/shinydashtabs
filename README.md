@@ -77,6 +77,8 @@ want to do. Type the command in the Console window.
 
 #### 3. Run the App
 
+If you initialized the framework within an existing project make sure to start a new session (click the power icon in the upper right corner of the RStudio Webserver or type `q()` on the Console window).
+
 You're ready to go! The app will run (and be empty). You can run the app by pressing Ctrl + Shift + Enter when focused in the `app.R` script or type:
 
 ```r
@@ -101,7 +103,9 @@ You can stop the app by clicking the Stop button or clicking in the console and 
 #### 5. Create a Tab
 
 Now the fun part. You can use the built in functions to construct tabs.
-For instance lets add a `methodology` tab. The names must be valid R object names (alpha-numeric and underscores, with leading letter):
+For instance lets add a `methodology` tab. The names must be valid R object names (alpha-numeric and underscores, with leading letter).
+
+Run in the Console:
 
 ```r
 # if no parent is specified, it creates the tab at the top level
@@ -114,9 +118,7 @@ This will open all of the files that pertain to that tab.
 
 We've got a folder on the server side, `server/methodology` in which
 we've got separate files for the observers, renders and reactives.
-This is a mutually exclusive and collectively exhaustive list! If your
-solution to your server side problem doesn't fit in these files, you're
-asking the _wrong question_.
+This is a mutually exclusive and collectively exhaustive list! If the way you've solved your problem involving server side code uses a method that isn't a `reactive`, `observer` or `render` (and thus goes in one of these files) you should reconsider the solution.
 
 On the ui side we can see that there is an R script and a .yaml script.
 The R script defines the actual structure of the ui whereas the .yaml
@@ -124,7 +126,9 @@ signifies to the package that the tab should be included. If there is
 a directory with an .R file but no .yaml then it will not be included.
 Don't make a habit of this -- if the code is not included in the app then it shouldn't be in that directory!
 
-We've populated some example elements to help you get started:
+We've populated some example elements to help you get started.
+
+Run in the Console:
 
 ```r
 library("shiny") # if you haven't already
@@ -135,7 +139,9 @@ runApp()
 
 #### 6. Create Nested Tabs
 
-Here's where the power of `shinytabconstructor` comes in. We'll create some nested tabs and keep the code simple:
+Here's where the power of `shinytabconstructor` comes in. We'll create some nested tabs and keep the code simple.
+
+Make sure you've stopped the app by clicking the stop sign icon or hitting "Esc" after focusing on the Console. Then, run in the Console:
 
 ```r
 # add the 'research' tab under the 'methodology' tab
@@ -175,6 +181,11 @@ Instead, the constructor allows you to configure these things in [YAML](http://y
 Let's configure the `white_paper` tab, first open its YAML file, the easiest way is using the "Go to file/function" search:
 
 ![using go to file](www/app/04a-goto-script.png)
+
+Some key "gotchas":
+
+* There must be a space between the colon `:` and the value, declarations like `attribute:value` are invalid. If you violate this you'll see something like: `Error in yaml.load(string, error.label = error.label, ...) : <...> Scanner error: mapping values are not allowed in this context <...>`
+* There must be a newline at the end of YAML files (press enter at the end of the last liine of text) otherwise you'll see a message like: `Warning in readLines(file) : incomplete final line found on 'ui/body/tabs/methodology/methodology.yaml'`
 
 We'll add some options (demonstrating with the `ifelse` that you can run R code there if needed):
 
