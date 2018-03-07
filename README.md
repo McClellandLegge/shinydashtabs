@@ -71,7 +71,7 @@ Create the Shiny Web App project in the usual way:
 We'll need to initialize the framework before we can add any tabs.
 It will overwrite the `app.R` file as well as the `ui/` and `server/`
 directories. It will ask you multiple times if this is really what you
-want to do.
+want to do. Type the command in the Console window. 
 
 ![Load library and initalize](www/init/05-initialize.PNG)
 
