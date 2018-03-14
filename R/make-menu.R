@@ -37,6 +37,7 @@ makeMenu <- function(.list) {
 
   # create a storage list
   l                <- list()
+  position         <- integer(length(clist))
   for (k in seq_along(clist)) {
 
     # read in the options, discard any null values
@@ -50,6 +51,20 @@ makeMenu <- function(.list) {
 
     # coalesce with the defaults
     yaml_opts[['text']] <- coalesce(yaml_opts[['text']], menu_labels[k])
+
+    # is a position specified?
+    pos <- yaml_opts[['position']]
+    if (is.integer(pos)) {
+      position[k] <- pos
+    } else {
+      if (!is.null(pos))  {
+        warning(sprintf("'position' option in '%s' yaml is not an integer, ignoring...", menu_names[k]))
+      }
+      position[k] <- NA
+    }
+
+    # delete the position option so its not passed to the function call below
+    yaml_opts[['position']] <- NULL
 
     # look at the position in the hierarchy
     has_only_yaml_children <- grepl("\\.yaml$", menu_child_names[[k]])
@@ -76,5 +91,7 @@ makeMenu <- function(.list) {
     } #/ if-else block
   } #/ seqlong clist block
 
-  return(l)
+  # return the list with position ordering. if none are specified the order
+  # will be the same as is read
+  return(l[order(position)])
 }

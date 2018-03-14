@@ -199,7 +199,22 @@ Save and run the app:
 
 ![configured app](img/app/04d-configured-app.PNG)
 
-Great! You can customize in any way you normally would.
+Great! You can customize in any way you normally would. There's an additional option to specify the position of the tabs in the sidebar menu.
+
+Let's add two more tabs by running the code following in the console:
+
+```r
+addTab("help", open = FALSE)
+addTab("results", open = FALSE)
+runApp()
+```
+
+![unordered tabs in the app](img/app/04e-position-tabs-unordered.PNG)
+
+If we add `position: 1` to the `methodology.yaml` and `whitepaper.yaml` we can have these be the first in their respective lists:
+
+![ordered tabs in the app](img/app/04f-position-tabs-ordered.PNG)
+
 
 #### 7. Removing Tabs
 
