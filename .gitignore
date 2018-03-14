@@ -9,3 +9,4 @@ app.R
 ui/
 server/
 init/
+www/

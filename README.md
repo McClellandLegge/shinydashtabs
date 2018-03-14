@@ -58,13 +58,13 @@ library("shinytabconstructor")
 
 Create the Shiny Web App project in the usual way:
 
-![Click File > New Project in RStudio](www/init/01-new-proj.png)
+![Click File > New Project in RStudio](img/init/01-new-proj.png)
 
-![Click 'New Directory'](www/init/02-new-directory.png)
+![Click 'New Directory'](img/init/02-new-directory.png)
 
-![Choose 'Shiny Web Application'](www/init/03-shiny.png)
+![Choose 'Shiny Web Application'](img/init/03-shiny.png)
 
-![Pick a directory and project name](www/init/04-name.png)
+![Pick a directory and project name](img/init/04-name.png)
 
 #### 2. Initialize the Framework
 
@@ -73,7 +73,7 @@ It will overwrite the `app.R` file as well as the `ui/` and `server/`
 directories. It will ask you multiple times if this is really what you
 want to do. Type the command in the Console window. 
 
-![Load library and initalize](www/init/05-initialize.PNG)
+![Load library and initalize](img/init/05-initialize.PNG)
 
 #### 3. Run the App
 
@@ -88,17 +88,17 @@ runApp()         # working directory needs to be in the top level of the project
 
 Or click:
 
-![Click 'Run App'](www/init/06-run.png)
+![Click 'Run App'](img/init/06-run.png)
 
 What it will look like while empty:
 
-![An empty app](www/init/07-empty-app.png)
+![An empty app](img/init/07-empty-app.png)
 
 #### 4. Stop the App
 
 You can stop the app by clicking the Stop button or clicking in the console and hitting `Esc`.
 
-![Hitting Stop](www/init/08-stop-app.png)
+![Hitting Stop](img/init/08-stop-app.png)
 
 #### 5. Create a Tab
 
@@ -114,7 +114,7 @@ addTab("methodology")
 
 This will open all of the files that pertain to that tab.
 
-![File Hierarchy](www/app/01-add-meth-tab.PNG)
+![File Hierarchy](img/app/01-add-meth-tab.PNG)
 
 We've got a folder on the server side, `server/methodology` in which
 we've got separate files for the observers, renders and reactives.
@@ -135,7 +135,7 @@ library("shiny") # if you haven't already
 runApp()
 ```
 
-![app with new tab](www/app/02-meth-tab.PNG)
+![app with new tab](img/app/02-meth-tab.PNG)
 
 #### 6. Create Nested Tabs
 
@@ -153,7 +153,7 @@ addTab('white_paper', 'methodology', open = FALSE)
 
 Alright, so what does the app look like now?
 
-![nested tabs in app dir structure](www/app/03-nested-tabs.PNG)
+![nested tabs in app dir structure](img/app/03-nested-tabs.PNG)
 
 Notice that we have two new server folders with their component pieces. We keep these flat under `server/` because there isn't any hierarchical nature to the server side code.
 
@@ -164,7 +164,7 @@ at the same time.
 
 Here's what the app looks like now:
 
-![nested tabs in menu](www/app/04-nested-app-no-sel.PNG)
+![nested tabs in menu](img/app/04-nested-app-no-sel.PNG)
 
 But wait, what happened to our `methodology` tab content? Don't worry,
 the source code is still there but because of the way the menu is
@@ -180,7 +180,7 @@ Instead, the constructor allows you to configure these things in [YAML](http://y
 
 Let's configure the `white_paper` tab, first open its YAML file, the easiest way is using the "Go to file/function" search:
 
-![using go to file](www/app/04a-goto-script.png)
+![using go to file](img/app/04a-goto-script.png)
 
 Some key "gotchas":
 
@@ -189,15 +189,15 @@ Some key "gotchas":
 
 We'll add some options (demonstrating with the `ifelse` that you can run R code there if needed):
 
-![configure white paper tab yaml](www/app/04b-whitepaper-yaml.PNG)
+![configure white paper tab yaml](img/app/04b-whitepaper-yaml.PNG)
 
 And to the parent's YAML (`methodology.yaml`) too:
 
-![configure methodology tab yaml](www/app/04c-methodology-yaml.PNG)
+![configure methodology tab yaml](img/app/04c-methodology-yaml.PNG)
 
 Save and run the app:
 
-![configured app](www/app/04d-configured-app.PNG)
+![configured app](img/app/04d-configured-app.PNG)
 
 Great! You can customize in any way you normally would.
 
@@ -207,17 +207,17 @@ Right, so there are a lot of files associated with each tab, part of the price o
 
 The function is smart and will both ask you to confirm deletion and detect if there are any files (tabs or otherwise) below them.
 
-![deleting a tab](www/app/05-delete-tab.PNG)
+![deleting a tab](img/app/05-delete-tab.PNG)
 
 Notice the function notified that there were child tabs, if you want to delete those too, then specify `cascade = TRUE` in the function call:
 
-![deleting a tab recursively](www/app/05a-delete-tab-recur.PNG)
+![deleting a tab recursively](img/app/05a-delete-tab-recur.PNG)
 
 #### 8. Static Variables, Functions & Data
 
 To keep things organized we put one time library loads, variable definitions, function definitions and data loads in a separate place. The initialization will create the `init/` directory with the following files:
 
-![init files](www/app/06-init-dir.PNG)
+![init files](img/app/06-init-dir.PNG)
 
 Anything that needs to be run only once or needs to be available in both the ui and server side code should be put in the appropriate files.
 
@@ -225,7 +225,7 @@ Anything that needs to be run only once or needs to be available in both the ui 
 
 The initialization process will also copy the `www/` directory and populate some demo scripts to include and how to include them in the `ui/body/ui.body.R` script.
 
-![images, css and javascript](www/app/07-www-dir.PNG)
+![images, css and javascript](img/app/07-www-dir.PNG)
 
 
 #### 10. Get Building!
