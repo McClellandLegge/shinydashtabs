@@ -1,6 +1,7 @@
 #' Source the server functions
 #'
 #' @export
+#' @import data.table
 serverFunc <- function(input, output, session) {
   server_files <- list.files(
       path       = "./server/"
