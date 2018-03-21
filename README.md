@@ -186,6 +186,7 @@ Some key "gotchas":
 
 * There must be a space between the colon `:` and the value, declarations like `attribute:value` are invalid. If you violate this you'll see something like: `Error in yaml.load(string, error.label = error.label, ...) : <...> Scanner error: mapping values are not allowed in this context <...>`
 * There must be a newline at the end of YAML files (press enter at the end of the last liine of text) otherwise you'll see a message like: `Warning in readLines(file) : incomplete final line found on 'ui/body/tabs/methodology/methodology.yaml'`
+* If you wish to have strings with spaces in them the `yaml` library will interpret them as separate elements so you must coerce it to be evaluated by surrounding the string with parentheses, e.g.: `("Multiple Word Title")`
 
 We'll add some options (demonstrating with the `ifelse` that you can run R code there if needed):
 
