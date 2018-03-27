@@ -41,7 +41,10 @@ makeMenu <- function(.list) {
   for (k in seq_along(clist)) {
 
     # read in the options, discard any null values
-    yaml_opts <- yaml::read_yaml(clist[[k]][[1]]) %>%
+    yaml_opts <- menu_names[k] %>%
+      sprintf("%s.yaml", .) %>%
+      clist[[k]][[.]] %>%
+      yaml::read_yaml() %>%
       discard(is.null) %>%
       evaluateYAML()
 
