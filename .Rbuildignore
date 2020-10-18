@@ -3,3 +3,4 @@
 ^www
 ^.idea
 ^codecov\.yml$
+^\.travis\.yml$
