@@ -3,7 +3,7 @@
 # put all additional library loads in the init/01_libraries.R file
 library("shiny")
 library("shinydashboard")
-library("shinytabconstructor")
+library("shinydashtabs")
 
 # run the initialization scripts to define everything that need only be
 # run once, or needs to be available in both server and ui side code

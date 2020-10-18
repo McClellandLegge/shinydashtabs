@@ -1,4 +1,4 @@
 library(testthat)
-library(shinytabconstructor)
+library(shinydashtabs)
 
-test_check("shinytabconstructor")
+test_check("shinydashtabs")

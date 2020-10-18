@@ -4,10 +4,19 @@
 \alias{menuItemList}
 \title{Create a menu item}
 \usage{
-menuItemList(text, .list, icon = NULL, badgeLabel = NULL,
-  badgeColor = "green", tabName = NULL, href = NULL, newtab = TRUE,
-  selected = NULL, expandedName = as.character(gsub("[[:space:]]", "",
-  text)), startExpanded = FALSE)
+menuItemList(
+  text,
+  .list,
+  icon = NULL,
+  badgeLabel = NULL,
+  badgeColor = "green",
+  tabName = NULL,
+  href = NULL,
+  newtab = TRUE,
+  selected = NULL,
+  expandedName = as.character(gsub("[[:space:]]", "", text)),
+  startExpanded = FALSE
+)
 }
 \arguments{
 \item{text}{Text to show for the menu item.}

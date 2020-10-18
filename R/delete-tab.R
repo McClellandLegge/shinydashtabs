@@ -8,8 +8,8 @@
 deleteTab <- function(name, cascade = FALSE) {
 
   # find the file path of the location of the tabs
-  ser_loc <- shinytabconstructor::getServerLocation()
-  tab_dir <- dirname(shinytabconstructor::findTab(name))
+  ser_loc <- shinydashtab::getServerLocation()
+  tab_dir <- dirname(shinydashtab::findTab(name))
   tab_fls <- paste0(name, ".", c("R", "yaml"))
   ser_dir <- file.path(ser_loc, name)
   ser_fls <- paste(name, c("renders.R", "reactives.R", "observers.R"), sep = "_")
@@ -25,7 +25,7 @@ deleteTab <- function(name, cascade = FALSE) {
   }
 
   # see if any tabs are under the tab to be deleted
-  child_tab_names <- shinytabconstructor::getChildTabs(name)
+  child_tab_names <- shinydashtab::getChildTabs(name)
   has_children    <- length(child_tab_names) > 0L
   if (has_children == TRUE) {
     child_tab_str   <- paste0(child_tab_names, collapse = ", ")

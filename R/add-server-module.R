@@ -6,10 +6,10 @@
 #' @export
 addServerModule <- function(name) {
 
-  pkg <- "shinytabconstructor"
+  pkg <- "shinydashtabs"
 
   # create the server side folder
-  server_dir <- file.path(shinytabconstructor::getServerLocation(), name)
+  server_dir <- file.path(shinydashtabs::getServerLocation(), name)
   if (file.exists(server_dir)) {
     msg <- paste(server_dir, "already exists! Please remove it before continuing")
     stop(msg)

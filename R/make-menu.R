@@ -89,8 +89,8 @@ makeMenu <- function(.list) {
       # if we see non-yaml names below (i.e. what we assume to be more directories)
       # we want to initialize a menu item and create either more menu items or
       # sub menu items recursively.
-      yaml_opts[[".list"]] <- shinytabconstructor::makeMenu(clist[[k]])
-      l[[k]] <- do.call(shinytabconstructor::menuItemList, args = yaml_opts)
+      yaml_opts[[".list"]] <- shinydashtabs::makeMenu(clist[[k]])
+      l[[k]] <- do.call(shinydashtabs::menuItemList, args = yaml_opts)
     } #/ if-else block
   } #/ seqlong clist block
 

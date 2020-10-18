@@ -5,6 +5,6 @@
 #' @return A filepath of the location of that tab
 #' @export
 findTab <- function(name) {
-  existing_tabs <- shinytabconstructor::getExistingTabs()
+  existing_tabs <- shinydashtabs::getExistingTabs()
   return(ifelse(length(existing_tabs) > 0L, unname(existing_tabs[name]), NA))
 }

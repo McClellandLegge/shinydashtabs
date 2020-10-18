@@ -11,7 +11,7 @@ checkDuplicateTabNames <- function(tocheck = NULL) {
   }
 
   # find the file paths of any R files under the tabs directory
-  paths     <- shinytabconstructor::getExistingTabs()
+  paths     <- shinydashtab::getExistingTabs()
   tab_names <- names(paths)
 
   # determine if any are duplicated by seeing which indices match each entry

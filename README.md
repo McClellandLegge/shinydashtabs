@@ -19,7 +19,7 @@ more easily understood by other developers.
 ## Quick Start
 
 ```r
-library("shinytabconstructor")
+library("shinydashtabs")
 library("shiny")
 initTabConstructor()            # initialize the file system conventions
 runApp()                        # run the empty app
@@ -37,19 +37,8 @@ deleteTab('help')                       # delete the tab & files
 
 ## Installation
 
-**NOTE:** To install from source you'll need to [register your SSH keys](http://csmrnd01.infores.com:3000/CSM/register-ssh-keys):
-
 ```r
-# For Windows only
-devtools::install_git("http://csmrnd01.infores.com:3000/CSM-RND/shinytabconstructor.git")
-```
-
-I've already installed the package on `csmrnd01`'s system library and on
-the mapr03r cluster in my personal library:
-
-```r
-.libPaths("/mapr/mapr03r/analytic_users/msmck/usr/local/lib/R")
-library("shinytabconstructor")
+remotes::install_github("McClellandLegge/shinydashtabs")
 ```
 
 ## Walk-Through
@@ -139,7 +128,7 @@ runApp()
 
 #### 6. Create Nested Tabs
 
-Here's where the power of `shinytabconstructor` comes in. We'll create some nested tabs and keep the code simple.
+Here's where the power of `shinydashtabs` comes in. We'll create some nested tabs and keep the code simple.
 
 Make sure you've stopped the app by clicking the stop sign icon or hitting "Esc" after focusing on the Console. Then, run in the Console:
 

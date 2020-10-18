@@ -55,7 +55,7 @@ initTabConstructor <- function() {
   } #/ length existing files if-block
 
   # execute the copy
-  copy_res <- system.file("demo_app", package = "shinytabconstructor") %>%
+  copy_res <- system.file("demo_app", package = "shinydashtabs") %>%
     list.files(full.names = TRUE) %>%
     file.copy(., app_dir, recursive = TRUE)
 

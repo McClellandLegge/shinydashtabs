@@ -10,22 +10,22 @@
 addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
 
   # check the naming conventions against the default
-  stopifnot(shinytabconstructor::checkNamingConventions(name))
+  stopifnot(shinydashtabs::checkNamingConventions(name))
 
   # check that there is no duplication of names
-  stopifnot(shinytabconstructor::checkDuplicateTabNames(name))
+  stopifnot(shinydashtabs::checkDuplicateTabNames(name))
 
   # just because its used so much
-  pkg <- "shinytabconstructor"
+  pkg <- "shinydashtabs"
 
   # find the file path of the location of the tabs
-  tabs <- shinytabconstructor::getTabLocation()
+  tabs <- shinydashtabs::getTabLocation()
 
   # find the parent directory
   if (parent == 'ui') {
     parent_dir <- tabs
   } else {
-    parent_dir <- dirname(shinytabconstructor::findTab(parent))
+    parent_dir <- dirname(shinydashtabs::findTab(parent))
     if (is.na(parent_dir)) {
       stop(paste("Tab", parent, "not found!"))
     }
@@ -40,7 +40,7 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
   }
 
   # create the server side folder
-  server_dir <- file.path(shinytabconstructor::getServerLocation(), name)
+  server_dir <- file.path(shinydashtabs::getServerLocation(), name)
   if (file.exists(server_dir)) {
     msg <- paste(server_dir, "already exists! Please remove it before continuing")
     stop(msg)
