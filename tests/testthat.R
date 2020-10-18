@@ -1,4 +1,2 @@
-library(testthat)
-library(shinydashtabs)
-
-test_check("shinydashtabs")
+library("testthat")
+library("shinydashtabs")
