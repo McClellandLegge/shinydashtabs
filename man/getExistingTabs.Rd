@@ -13,5 +13,7 @@ A character vector
 Find the existing tab names
 }
 \examples{
+\dontrun{
 getExistingTabs()
+}
 }
