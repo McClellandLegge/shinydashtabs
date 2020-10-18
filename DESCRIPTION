@@ -9,7 +9,9 @@ Description: A package to structure and run shiny code in a way that makes it
 License: MIT-2
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests: 
+    testthat,
+    covr
 Imports: tools,
     shiny,
     shinydashboard,

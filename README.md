@@ -1,5 +1,10 @@
 # Organizing Shiny Tabs
 
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/McClellandLegge/shinydashtab.svg?branch=master)](https://travis-ci.org/McClellandLegge/shinydashtab)
+[![Codecov test coverage](https://codecov.io/gh/McClellandLegge/shinytabconstructor/branch/master/graph/badge.svg)](https://codecov.io/gh/McClellandLegge/shinytabconstructor?branch=master)
+<!-- badges: end -->
+
 ## Motivation
 
 What are initially thought to be small shiny projects produced for proofs of concept

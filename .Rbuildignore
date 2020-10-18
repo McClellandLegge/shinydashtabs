@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^www
 ^.idea
+^codecov\.yml$
