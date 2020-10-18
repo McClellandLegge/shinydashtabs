@@ -4,8 +4,10 @@ Title: Opinionated Shiny Structure
 Version: 1.1.0
 Author: McClelland Legge <McClelland.Legge@gmail.com> [aut, cre]
 Maintainer: <McClelland.Legge@gmail.com>
-Description: A package to structure and run shiny code in a way that makes it 
-    comprehensible when codebases grow large
+Description: An opinionated organization of code for 'shinydashboard' R shiny apps,
+    storing server side code separately based on the tab view for which they are used.
+    The UI is defined in a hierarchical manner mimicking the appearance of the
+    tabs in the app.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
