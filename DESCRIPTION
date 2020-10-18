@@ -6,7 +6,7 @@ Author: McClelland Legge <McClelland.Legge@gmail.com> [aut, cre]
 Maintainer: <McClelland.Legge@gmail.com>
 Description: A package to structure and run shiny code in a way that makes it 
     comprehensible when codebases grow large
-License: MIT-2
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
