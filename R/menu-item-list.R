@@ -33,62 +33,80 @@
 #'     the \code{\link[shinydashboard]{menuSubItem}}s can be passed in a list.
 #'     All creational credit to the maintainers of that package
 #' @export
-menuItemList <- function (text, .list, icon = NULL, badgeLabel = NULL, badgeColor = "green",
+menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor = "green",
                           tabName = NULL, href = NULL, newtab = TRUE, selected = NULL,
                           expandedName = as.character(gsub("[[:space:]]", "", text)),
                           startExpanded = FALSE)
 {
 
-  if (!requireNamespace("shinydashboard", quietly = TRUE)) {
-    stop("`shinydashboard` needed for this function to work. Please install it.", call. = FALSE)
+  subItems <- .list
+
+  if (!is.null(icon)) {
+    shinydashboard::tagAssert(icon, type = "i")
   }
 
-  subItems <- .list
-  if (!is.null(icon))
-    shinydashboard:::tagAssert(icon, type = "i")
-  if (!is.null(href) + (!is.null(tabName) + (length(subItems) >
-                                             0) != 1)) {
+  if (!is.null(href) + (!is.null(tabName) + (length(subItems) > 0) != 1)) {
     stop("Must have either href, tabName, or sub-items (contained in ...).")
   }
+
   if (!is.null(badgeLabel) && length(subItems) != 0) {
     stop("Can't have both badge and subItems")
   }
-  shinydashboard:::validateColor(badgeColor)
+
+  validateColor(badgeColor)
   isTabItem <- FALSE
-  target <- NULL
+  target    <- NULL
+
   if (!is.null(tabName)) {
-    shinydashboard:::validateTabName(tabName)
+    validateTabName(tabName)
     isTabItem <- TRUE
     href <- paste0("#shiny-tab-", tabName)
-  }
-  else if (is.null(href)) {
+  } else if (is.null(href)) {
     href <- "#"
-  }
-  else {
-    if (newtab)
+  } else {
+    if (newtab) {
       target <- "_blank"
+    }
   }
+
   if (!is.null(badgeLabel)) {
-    badgeTag <- tags$small(class = paste0("badge pull-right bg-",
-                                          badgeColor), badgeLabel)
-  }
-  else {
+    badgeTag <- tags$small(class = paste0("badge pull-right bg-", badgeColor), badgeLabel)
+  } else {
     badgeTag <- NULL
   }
+
   if (length(subItems) == 0) {
-    return(tags$li(a(href = href, `data-toggle` = if (isTabItem) "tab",
-                     `data-value` = if (!is.null(tabName)) tabName, `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
-                     target = target, icon, span(text), badgeTag)))
+    c_li <- tags$li(
+      a(
+        href = href
+        , `data-toggle` = if (isTabItem) "tab"
+        , `data-value` = if (!is.null(tabName)) tabName
+        , `data-start-selected` = if (isTRUE(selected)) 1 else NULL
+        , target = target
+        , icon
+        , span(text)
+        , badgeTag
+      ) #/ a
+    ) #/ li
+    return(c_li)
   }
-  default <- if (startExpanded)
-    expandedName
-  else ""
-  dataExpanded <- shinydashboard:::`%OR%`(shiny::restoreInput(id = "sidebarItemExpanded",
-                                                              default),  "")
-  isExpanded <- nzchar(dataExpanded) && (dataExpanded == expandedName)
-  tags$li(class = "treeview", a(href = href, icon, span(text),
-                                shiny::icon("angle-left", class = "pull-right")), do.call(tags$ul,
-                                                                                          c(class = paste0("treeview-menu", if (isExpanded) " menu-open" else ""),
-                                                                                            style = paste0("display: ", if (isExpanded) "block;" else "none;"),
-                                                                                            `data-expanded` = expandedName, subItems)))
+  default      <- if (startExpanded) expandedName else ""
+  dataExpanded <- `%OR%`(shiny::restoreInput(id = "sidebarItemExpanded", default), "")
+  isExpanded   <- nzchar(dataExpanded) && (dataExpanded == expandedName)
+  tags$li(
+      class = "treeview"
+    , a(
+        href = href
+      , icon
+      , span(text)
+      , shiny::icon("angle-left", class = "pull-right")
+    ) #/ a
+    , do.call(
+      tags$ul
+      , c(
+          class = paste0("treeview-menu", if (isExpanded) " menu-open" else "")
+        , style = paste0("display: ", if (isExpanded) "block;" else "none;")
+        , `data-expanded` = expandedName, subItems)
+      ) #/ do.call
+    ) #/ li
 }
