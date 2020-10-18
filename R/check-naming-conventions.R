@@ -5,7 +5,8 @@
 #'
 #' @return \code{TRUE}
 #' @examples
-#' checkNamingConventions(c("01-desc.R", "a.good.name.R", "another_acceptable.name.R"))
+#' possible_names <- c("01-desc.R", "a.good.name.R", "another_acceptable.name.R")
+#' try(checkNamingConventions(possible_names))
 #' @export
 #' @import purrr
 checkNamingConventions <- function(files, criteria = "[^a-z0-9_\\.\\/]") {
