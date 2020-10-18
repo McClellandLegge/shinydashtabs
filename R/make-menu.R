@@ -4,24 +4,9 @@
 #'
 #' @return A list of html menu objects
 #' @export
-#' @import purrr
 makeMenu <- function(.list) {
 
-  if (!requireNamespace("yaml", quietly = TRUE)) {
-    stop("`yaml` needed for this function to work. Please install it.", call. = FALSE)
-  }
-
-  if (!requireNamespace("purrr", quietly = TRUE)) {
-    stop("`purrr` needed for this function to work. Please install it.", call. = FALSE)
-  }
-
-  if (!requireNamespace("tools", quietly = TRUE)) {
-    stop("`tools` needed for this function to work. Please install it.", call. = FALSE)
-  }
-
-  if (!requireNamespace("shinydashboard", quietly = TRUE)) {
-    stop("`shinydashboard` needed for this function to work. Please install it.", call. = FALSE)
-  }
+  . <- NULL # make R check happy
 
   # if there are any yamls in the top level of the list -- discard them
   clist            <- discard(.list, grepl("\\.yaml$", names(.list)))
@@ -33,7 +18,7 @@ makeMenu <- function(.list) {
   menu_labels      <- tools::toTitleCase(gsub("_", " ", menu_names))
 
   # strip out the child names for each list item
-  menu_child_names <- map(clist, ~names(.))
+  menu_child_names <- purrr::map(clist, ~names(.))
 
   # create a storage list
   l                <- list()

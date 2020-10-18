@@ -1,6 +1,6 @@
-#' Evaluate a YAML list
+#' Evaluate a YAML list in place
 #'
-#' @param yaml_list
+#' @param yaml_list A possibly nested list of objects read from a YAML file
 #'
 #' @return A list
 #' @export

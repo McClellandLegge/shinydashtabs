@@ -1,16 +1,9 @@
 #' Initialize the framework
 #'
 #' @export
-#' @import purrr
 initTabConstructor <- function() {
 
-  if (!requireNamespace("purrr", quietly = TRUE)) {
-    stop("`purrr` needed for this function to work. Please install it.", call. = FALSE)
-  }
-
-  if (!requireNamespace("utils", quietly = TRUE)) {
-    stop("`utils` needed for this function to work. Please install it.", call. = FALSE)
-  }
+  . <- NULL # make R check happy
 
   app_dir <- rprojroot::find_rstudio_root_file()
   title   <- sprintf("Using:\n\n%s\n\nas the app's root directory, continue?", app_dir)
@@ -31,7 +24,7 @@ initTabConstructor <- function() {
   # identify the files that conflict
   conflict_files <- exist_files %>%
     toupper() %>%
-    map_lgl(~. %in% check_files) %>%
+    purrr::map_lgl(~. %in% check_files) %>%
     exist_files[.]
 
   # check that the user is ok with overwriting the files

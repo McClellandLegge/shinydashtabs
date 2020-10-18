@@ -2,11 +2,6 @@
 #'
 #' @param text Text to show for the menu item.
 #' @param .list An optional list of \code{\link[shinydashboard]{menuSubItem}}s
-#' @param id For \code{sidebarMenu}, if \code{id} is present, this id will be
-#'   used for a Shiny input value, and it will report which tab is selected. For
-#'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
-#'   \code{tabName} of the currently-selected tab. If you want to be able to
-#'   bookmark and restore the selected tab, an \code{id} is required.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
 #'   \code{NULL}, don't display an icon.
 #' @param badgeLabel A label for an optional badge. Usually a number or a short
@@ -60,7 +55,7 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
   if (!is.null(tabName)) {
     validateTabName(tabName)
     isTabItem <- TRUE
-    href <- paste0("#shiny-tab-", tabName)
+    href      <- paste0("#shiny-tab-", tabName)
   } else if (is.null(href)) {
     href <- "#"
   } else {
@@ -70,21 +65,21 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
   }
 
   if (!is.null(badgeLabel)) {
-    badgeTag <- tags$small(class = paste0("badge pull-right bg-", badgeColor), badgeLabel)
+    badgeTag <- shiny::tags$small(class = paste0("badge pull-right bg-", badgeColor), badgeLabel)
   } else {
     badgeTag <- NULL
   }
 
   if (length(subItems) == 0) {
-    c_li <- tags$li(
-      a(
-        href = href
+    c_li <- shiny::tags$li(
+      shiny::a(
+          href = href
         , `data-toggle` = if (isTabItem) "tab"
         , `data-value` = if (!is.null(tabName)) tabName
         , `data-start-selected` = if (isTRUE(selected)) 1 else NULL
         , target = target
         , icon
-        , span(text)
+        , shiny::span(text)
         , badgeTag
       ) #/ a
     ) #/ li
@@ -93,16 +88,16 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
   default      <- if (startExpanded) expandedName else ""
   dataExpanded <- `%OR%`(shiny::restoreInput(id = "sidebarItemExpanded", default), "")
   isExpanded   <- nzchar(dataExpanded) && (dataExpanded == expandedName)
-  tags$li(
+  shiny::tags$li(
       class = "treeview"
-    , a(
+    , shiny::a(
         href = href
       , icon
-      , span(text)
+      , shiny::span(text)
       , shiny::icon("angle-left", class = "pull-right")
     ) #/ a
     , do.call(
-      tags$ul
+      shiny::tags$ul
       , c(
           class = paste0("treeview-menu", if (isExpanded) " menu-open" else "")
         , style = paste0("display: ", if (isExpanded) "block;" else "none;")
