@@ -91,6 +91,6 @@ addTab <- function(name, parent = 'ui', active = TRUE, open = TRUE) {
   if (open == TRUE) {
     new_ui_files   <- paste0(new_tab_fl, ".", c("R", "yaml"))
     new_serv_files <- c(new_renders, new_observers, new_reactives)
-    file.edit(c(new_ui_files, new_serv_files))
+    utils::file.edit(c(new_ui_files, new_serv_files))
   }
 }
