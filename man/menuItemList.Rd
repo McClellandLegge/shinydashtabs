@@ -52,12 +52,6 @@ bookmarking state.)}
 \item{startExpanded}{Should this \code{menuItem} be expanded on app startup?
 (This is only applicable to \code{menuItem}s that have children, and only
 one of these can be expanded at any given time).}
-
-\item{id}{For \code{sidebarMenu}, if \code{id} is present, this id will be
-used for a Shiny input value, and it will report which tab is selected. For
-example, if \code{id="tabs"}, then \code{input$tabs} will be the
-\code{tabName} of the currently-selected tab. If you want to be able to
-bookmark and restore the selected tab, an \code{id} is required.}
 }
 \description{
 Create a menu item

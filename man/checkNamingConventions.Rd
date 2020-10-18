@@ -18,5 +18,6 @@ checkNamingConventions(files, criteria = "[^a-z0-9_\\\\.\\\\/]")
 Check the naming conventions of the app files
 }
 \examples{
-checkNamingConventions(c("01-desc.R", "a.good.name.R", "another_acceptable.name.R"))
+possible_names <- c("01-desc.R", "a.good.name.R", "another_acceptable.name.R")
+try(checkNamingConventions(possible_names))
 }

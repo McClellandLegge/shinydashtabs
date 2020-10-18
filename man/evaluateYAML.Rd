@@ -2,16 +2,16 @@
 % Please edit documentation in R/eval-yaml.R
 \name{evaluateYAML}
 \alias{evaluateYAML}
-\title{Evaluate a YAML list}
+\title{Evaluate a YAML list in place}
 \usage{
 evaluateYAML(yaml_list)
 }
 \arguments{
-\item{yaml_list}{}
+\item{yaml_list}{A possibly nested list of objects read from a YAML file}
 }
 \value{
 A list
 }
 \description{
-Evaluate a YAML list
+Evaluate a YAML list in place
 }
