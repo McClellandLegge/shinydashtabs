@@ -1,7 +1,7 @@
 Package: shinydashtabs
 Type: Package
 Title: Opinionated Shiny Structure
-Version: 1.1.0
+Version: 1.1.1
 Author: McClelland Legge <McClelland.Legge@gmail.com> [aut, cre]
 Maintainer: <McClelland.Legge@gmail.com>
 Description: An opinionated organization of code for 'shinydashboard' R shiny apps,
