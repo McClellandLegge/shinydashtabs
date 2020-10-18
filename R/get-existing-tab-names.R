@@ -3,7 +3,9 @@
 #' @return A character vector
 #' @export
 #' @examples
+#' \dontrun{
 #' getExistingTabs()
+#' }
 getExistingTabs <- function() {
 
   # find the tab location
