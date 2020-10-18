@@ -12,12 +12,14 @@ LazyData: true
 Suggests: 
     testthat,
     covr
-Imports: tools,
+Imports: 
+    tools,
     shiny,
     shinydashboard,
     purrr,
     utils,
     brew,
     rprojroot,
-    yaml
+    yaml,
+    magrittr
 RoxygenNote: 7.1.1
