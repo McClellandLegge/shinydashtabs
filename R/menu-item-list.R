@@ -37,7 +37,7 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
   subItems <- .list
 
   if (!is.null(icon)) {
-    shinydashboard::tagAssert(icon, type = "i")
+    shinydashboard:::tagAssert(icon, type = "i")
   }
 
   if (!is.null(href) + (!is.null(tabName) + (length(subItems) > 0) != 1)) {
@@ -48,12 +48,12 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
     stop("Can't have both badge and subItems")
   }
 
-  validateColor(badgeColor)
+  shinydashboard:::validateColor(badgeColor)
   isTabItem <- FALSE
   target    <- NULL
 
   if (!is.null(tabName)) {
-    validateTabName(tabName)
+    shinydashboard:::validateTabName(tabName)
     isTabItem <- TRUE
     href      <- paste0("#shiny-tab-", tabName)
   } else if (is.null(href)) {
@@ -86,7 +86,7 @@ menuItemList <- function(text, .list, icon = NULL, badgeLabel = NULL, badgeColor
     return(c_li)
   }
   default      <- if (startExpanded) expandedName else ""
-  dataExpanded <- `%OR%`(shiny::restoreInput(id = "sidebarItemExpanded", default), "")
+  dataExpanded <- shinydashboard:::`%OR%`(shiny::restoreInput(id = "sidebarItemExpanded", default), "")
   isExpanded   <- nzchar(dataExpanded) && (dataExpanded == expandedName)
   shiny::tags$li(
       class = "treeview"
