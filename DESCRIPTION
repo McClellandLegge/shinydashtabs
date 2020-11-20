@@ -23,5 +23,8 @@ Imports:
     brew,
     rprojroot,
     yaml,
-    magrittr
+    magrittr,
+    fs,
+    rlang,
+    glue
 RoxygenNote: 7.1.1
