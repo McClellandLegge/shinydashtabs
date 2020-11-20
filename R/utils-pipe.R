@@ -9,3 +9,15 @@
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#' Tee operator
+#'
+#' See \code{magrittr::\link[magrittr:pipe]{\%T>\%}} for details.
+#'
+#' @name %T>%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %T>%
+#' @usage lhs \%T>\% rhs1 %>% ths2
+NULL
