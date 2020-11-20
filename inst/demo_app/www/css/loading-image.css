@@ -1,7 +1,0 @@
-#loading-content {
-  opacity: 0.9;
-  z-index: 100;
-  position: fixed; /* or absolute */
-  top: 50%;
-  left: 50%;
-}

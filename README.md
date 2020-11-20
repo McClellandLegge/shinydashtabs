@@ -231,13 +231,6 @@ To keep things organized we put one time library loads, variable definitions, fu
 
 Anything that needs to be run only once or needs to be available in both the ui and server side code should be put in the appropriate files.
 
-#### 9. Including Images, Custom CSS and Javascript
-
-The initialization process will also copy the `www/` directory and populate some demo scripts to include and how to include them in the `ui/body/ui.body.R` script.
-
-![images, css and javascript](img/app/07-www-dir.PNG)
-
-
 #### 10. Get Building!
 
 Check out the rest of the capabilities of [Shinydashboard](https://rstudio.github.io/shinydashboard/).
